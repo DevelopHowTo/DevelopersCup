@@ -124,14 +124,15 @@
                   <h4 class="card-title">Register</h4>
                 </div>
                 <div class="card-body">
-                  <form class="form">
+                  <form class="form" method="post" action="register.php">
+                      <?php include('errors.php'); ?>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
                           <i class="tim-icons icon-single-02"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" name="username" value="<?php echo $username; ?>" placeholder="User Name">
+                      <input type="text" class="form-control" name="username" value="<?php echo $username; ?>" placeholder="User Name" required="">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -139,7 +140,7 @@
                           <i class="tim-icons icon-email-85"></i>
                         </div>
                       </div>
-                      <input type="text" placeholder="Email" class="form-control">
+                      <input type="text"  name="email" value="<?php echo $email; ?>" placeholder="Email" class="form-control" required="">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -147,7 +148,7 @@
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Password">
+                      <input  class="form-control" name="password_1"  type="password" placeholder="Password" required="">
                     </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -155,20 +156,20 @@
                           <i class="tim-icons icon-lock-circle"></i>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="Confirm Password">
+                      <input name="password_2"   type="password" class="form-control" placeholder="Confirm Password" required="">
                     </div>
                     <div class="form-check text-left">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">
+                        <input class="form-check-input" type="checkbox" name="tandc" required="">
                         <span class="form-check-sign"></span>
                         I agree to the
                         <a href="javascript:void(0)">terms and conditions</a>.
                       </label>
                     </div>
+                    <div class="card-footer">
+                      <button class="btn btn-primary btn-round btn-lg" name="reg_user">Get Started</button>
+                    </div>
                   </form>
-                </div>
-                <div class="card-footer">
-                  <a href="javascript:void(0)" class="btn btn-primary btn-round btn-lg">Get Started</a>
                 </div>
               </div>
             </div>

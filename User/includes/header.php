@@ -1,4 +1,23 @@
+<?php
+session_start();
 
+  if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: .././index.php');
+  }
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: .././index.php");
+  }
+?>
+<?php include ("db.php");
+$url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,10 +55,12 @@
       <div class="sidebar-wrapper">
         <div class="logo">
           <a href="javascript:void(0)" class="simple-text logo-mini">
-            CT
+            <img src="../assets/img/mike.jpg" alt="Profile Photo">
           </a>
           <a href="javascript:void(0)" class="simple-text logo-normal">
-            Creative Tim
+              <?php  if (isset($_SESSION['username'])) : ?>
+                          <?php echo $_SESSION['username']; ?>
+             <?php endif ?>
           </a>
         </div>
         <ul class="nav">
@@ -50,53 +71,16 @@
             </a>
           </li>
           <li>
-            <a data-toggle="collapse" href="#pagesExamples">
-              <i class="tim-icons icon-image-02"></i>
-              <p>
-                Pages
-                <b class="caret"></b>
-              </p>
+            <a href="./event_list.php">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Even List</p>
             </a>
-            <div class="collapse" id="pagesExamples">
-              <ul class="nav">
-                <li>
-                  <a href="./pages/pricing.php">
-                    <span class="sidebar-mini-icon">P</span>
-                    <span class="sidebar-normal"> Pricing </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="./pages/timeline.php">
-                    <span class="sidebar-mini-icon">T</span>
-                    <span class="sidebar-normal"> Timeline </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="./pages/login.php">
-                    <span class="sidebar-mini-icon">L</span>
-                    <span class="sidebar-normal"> Login </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="./pages/register.php">
-                    <span class="sidebar-mini-icon">R</span>
-                    <span class="sidebar-normal"> Register </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="./pages/lock.php">
-                    <span class="sidebar-mini-icon">LS</span>
-                    <span class="sidebar-normal"> Lock Screen </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="./pages/user.php">
-                    <span class="sidebar-mini-icon">UP</span>
-                    <span class="sidebar-normal"> User Profile </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+          </li>
+          <li>
+            <a href="./user_profile.php">
+              <i class="tim-icons icon-settings"></i>
+              <p>User Profile</p>
+            </a>
           </li>
           <li>
             <a href="widgets.php">
